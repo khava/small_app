@@ -125,7 +125,7 @@ LOGOUT_REDIRECT_URL = 'main'
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/dialog_analysis_app/static/'
+STATIC_ROOT = '/small_app/static/'
 STATICFILES_DIRS = [BASE_DIR / 'static', ]
 
 MEDIA_URL = '/media/'
