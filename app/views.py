@@ -31,7 +31,7 @@ class MainPageView(View):
             picture.picture = form.cleaned_data['picture']
             picture.save()
 
-            email = get_object_or_404(User, username='admin').email
+            email = get_object_or_404(User, username=picture.login).email
             message = f'{picture.login}; {picture.created_date}; {picture.picture.url}'
             send_mail('Uploaded image info', message, settings.EMAIL_HOST_USER, [email, ], fail_silently=False)
 
