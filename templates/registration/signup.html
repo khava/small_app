@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+ 
+{% block content %}
+
+<div class="row">
+    <div class="col-8 col-lg-4 offset-2 offset-lg-4">
+      <form class="form-signin pt-3" action="" method='POST'>
+
+        {% csrf_token %}
+
+        <div class="text-center mt-5 b-1">
+          <p class="h4 mb-4 font-weight-light">Регистрация</p>
+        </div>
+
+        
+        <div class="form-label-group">
+          <label class="text-muted mb-1" for="id_username">Имя пользователя</label>
+          <input class="form-control mb-3" type="text" {% if form.username.value %} value="{{form.username.value}}" {% endif %}
+              name="username" maxlength="30" autofocus="" required="" id="id_username">
+          {% for error in form.username.errors %}
+            <div class="alert alert-secondary" role="alert">
+              {{ error }}
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="form-label-group">
+          <label class="text-muted mb-1" for="id_email">Email</label>
+          <input class="form-control mb-3" type="email" {% if form.email.value %} value="{{form.email.value}}" {% endif %}
+              name="email" maxlength="30" autofocus="" required="" id="id_email">
+          {% for error in form.username.errors %}
+            <div class="alert alert-secondary" role="alert">
+              {{ error }}
+            </div>
+          {% endfor %}
+        </div>
+        
+        <div class="form-label-group">
+          <label class="text-muted mb-1" for="id_password1">Пароль</label>
+          <input class="form-control mb-3" type="password" name="password1" required="" id="id_password1">
+          {% for error in form.password1.errors %}
+            <div class="alert alert-secondary" role="alert">
+              {{ error }}
+            </div>
+          {% endfor %}
+        </div>
+        
+        <div class="form-label-group">
+          <label class="text-muted mb-1" for="id_password2">Подтверждение пароля</label>
+          <input class="form-control mb-4" type="password" name="password2" required="" id="id_password2">
+          {% for error in form.password2.errors %}
+            <div class="alert alert-secondary" role="alert">
+              {{ error }}
+            </div>
+          {% endfor %}
+        </div>
+        
+        <div class="checkbox mb-3"></div>
+        <button class="btn btn-dark btn-lg btn-block signup-button" type="submit">Зарегистрироваться</button>
+      </form>
+      <div class="mt-4 text-center"><p>Есть аккаунт? <a href="{% url 'login' %}">Войдите!</a></p></div>
+    </div>
+  </div>
+{% endblock content %}

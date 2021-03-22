@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="decor">
+    <div class="form-left-decoration"></div>
+    <div class="form-right-decoration"></div>
+    <div class="circle"></div>
+    <div class="form-inner">
+        <h3 class="mb-4 text-center">Загрузить картинку</h3>
+
+        <form id="upload-img">
+            {% csrf_token %}
+            <input class="picture-input" type="file" name="picture" accept="image/*" required id="id_picture">
+            <input type="submit" name="submit" value="Отправить">
+        </form>   
+
+        {% if form.errors %}
+          <div class="alert alert-secondary" role="alert">
+            {{ form.errors }}
+          </div>
+        {% endif %}
+
+    </div>
+</div>
+
+<script>
+
+    $('#upload-img').submit(function(e) {
+        e.preventDefault();
+        $form = $(this)
+        var formData = new FormData(this);
+        $.ajax({
+            type: 'POST',
+            url: '{% url "main" %}',
+            enctype:'multipart/form-data',
+            data: formData,
+            success: function (response) {
+                alert(response['message'])
+            },
+            error: function(error){
+                alert(response['message'])
+            },
+            cache: false,
+            contentType: false,
+            processData: false,
+        });
+    });
+
+</script>
+
+{% endblock %}

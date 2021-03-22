@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="user-info mt-5">
+        <div class="line"></div>
+        <div class="username">{{ user.username }}</div>
+        <div class="mail">{{ user.email }}</div>
+        <div class="line"></div>
+    </div>
+
+    <div class="content mt-4">
+        <dl class="pictures-list">
+
+            {% for picture in pictures %}
+                <dt>{{ picture.created_date|date:'d-m-Y' }}</dt>
+                <dd>
+                    {{picture.picture}}
+                    <div class="buttons">
+                        <a class="btn btn-dark" href="{% url 'reload' id=picture.pk %}">Reload</a>
+                        <a class="btn btn-dark" href="{% url 'history' id=picture.pk %}">History</a>
+                    </div>
+                </dd>
+            {% endfor %}
+        </dl>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="user-info mt-5">
+        <div class="line"></div>
+        <div class="picture-name">PICTURE - {{ picture.pk }}</div>
+        <div class="line"></div>
+    </div>
+
+    <div class="content mt-4">
+        <dl class="history-list">
+
+            {% for history in picture.picture_history.all %}
+                <dt>{{ history.changed_date|date:'d-m-Y' }}</dt>
+                <dd>{{ history.old_path }}</dd>
+            {% endfor %}
+        </dl>
+    </div>
+
+{% endblock %}
