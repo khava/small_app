@@ -11,7 +11,9 @@
 
     <div class="content mt-4">
         <dl class="pictures-list">
-
+            <dt>Дата создания</dt>
+            <dd>Имя файла</dd>
+            
             {% for picture in pictures %}
                 <dt>{{ picture.created_date|date:'d-m-Y' }}</dt>
                 <dd>
